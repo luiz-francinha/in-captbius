@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tudo sobre nosso site, seja Bem-vindo(a)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #413d3d;
+            color: #333;
+        }
+        
+        header {
+            background-color: #272727;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #cfcfcf;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            margin-top: 0;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #413d3d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        
+        .btn:hover {
+            background-color: #413d3d;
+        }
+        
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>informações sobre nosso site</h1>
+        <p>Tudo pelo seu futuro</p>
+    </header>
+
+    <div class="container">
+
+        <section class="section" id="sobre">
+            <h2>Qual nosso objetivo?</h2>
+
+            <p>escrever nosso objetivo</p>
+
+            <h2>Como pretendemos te ajuda?</h2>
+
+            <p>escrever como pretendemos te ajudar</p>
+
+            <h4>Gostou do que leu? Não esqueça de nos avaliar!</h4>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Avaliação do Produto</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #413d3d;
+                    padding: 20px;
+                }
+                
+                .avaliacao-container {
+                    max-width: 500px;
+                    margin: 0 auto;
+                    background: #fff;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                
+                h2 {
+                    text-align: center;
+                    color: #333;
+                }
+                /* Estilo para as estrelas */
+                
+                .estrelas {
+                    display: flex;
+                    justify-content: center;
+                    margin: 20px 0;
+                }
+                
+                .estrela {
+                    font-size: 2rem;
+                    color: #ccc;
+                    cursor: pointer;
+                    transition: color 0.2s;
+                }
+                
+                .estrela.hover,
+                .estrela.selected {
+                    color: #ffcc00;
+                }
+                /* Estilo para o formulário */
+                
+                form {
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+                label {
+                    margin-bottom: 8px;
+                    font-weight: bold;
+                }
+                
+                textarea {
+                    resize: vertical;
+                    min-height: 80px;
+                    padding: 10px;
+                    margin-bottom: 15px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    font-family: Arial, sans-serif;
+                }
+                
+                button {
+                    padding: 10px;
+                    background-color: #4CAF50;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 1rem;
+                }
+                
+                button:hover {
+                    background-color: #45a049;
+                }
+                /* Mensagem de sucesso */
+                
+                .sucesso {
+                    display: none;
+                    margin-top: 15px;
+                    padding: 10px;
+                    background-color: #d4edda;
+                    color: #155724;
+                    border-radius: 4px;
+                }
+            </style>
+            </head>
+
+            <body>
+
+                <div class="avaliacao-container">
+                    <h2>Deixe sua Avaliação</h2>
+
+                    <!-- Sistema de estrelas -->
+                    <div class="estrelas" id="estrelas">
+                        <span class="estrela" data-value="1" title="Avaliação 1">&#9733;</span>
+                        <span class="estrela" data-value="2" title="Avaliação 2">&#9733;</span>
+                        <span class="estrela" data-value="3" title="Avaliação 3">&#9733;</span>
+                        <span class="estrela" data-value="4" title="Avaliação 4">&#9733;</span>
+                        <span class="estrela" data-value="5" title="Avaliação 5">&#9733;</span>
+                    </div>
+
+                    <!-- Formulário de comentários -->
+                    <form id="avaliacaoForm">
+                        <label for="comentario">Seu Comentário:</label>
+                        <textarea id="comentario" name="comentario" placeholder="Deixe sua opinião..."></textarea>
+                        <button type="submit">Enviar Avaliação</button>
+                    </form>
+
+                    <div class="sucesso" id="mensagemSucesso">
+                        Sua avaliação foi enviada com sucesso!
+                    </div>
+                </div>
+
+                <script>
+                    // Variáveis para controle da avaliação
+                    const estrelas = document.querySelectorAll('.estrela');
+                    let nota = 0;
+
+                    // Adiciona evento de hover e clique nas estrelas
+                    estrelas.forEach(estrela => {
+                        estrela.addEventListener('mouseover', () => {
+                            const valor = parseInt(estrela.getAttribute('data-value'));
+                            preencherEstrelas(valor);
+                        });
+
+                        estrela.addEventListener('mouseout', () => {
+                            preencherEstrelas(nota);
+                        });
+
+                        estrela.addEventListener('click', () => {
+                            nota = parseInt(estrela.getAttribute('data-value'));
+                            preencherEstrelas(nota);
+                        });
+                    });
+
+                    // Função para preencher estrelas
+                    function preencherEstrelas(n) {
+                        estrelas.forEach(estrela => {
+                            const valor = parseInt(estrela.getAttribute('data-value'));
+                            if (valor <= n) {
+                                estrela.classList.add('selected');
+                            } else {
+                                estrela.classList.remove('selected');
+                            }
+                        });
+                    }
+
+                    // Evento de submissão do formulário
+                    document.getElementById('avaliacaoForm').addEventListener('submit', function(e) {
+                        e.preventDefault();
+
+                        const comentario = document.getElementById('comentario').value.trim();
+
+                        if (nota === 0) {
+                            alert('Por favor, selecione uma avaliação com as estrelas.');
+                            return;
+                        }
+
+                        if (comentario === '') {
+                            alert('Por favor, deixe um comentário.');
+                            return;
+                        }
+
+                        // Para fins de demonstração, apenas exibe a mensagem
+                        mostrarMensagem();
+                        // Limpa o formulário
+                        document.getElementById('avaliacaoForm').reset();
+                        preencherEstrelas(0);
+                        nota = 0;
+                    });
+
+                    function mostrarMensagem() {
+                        const msg = document.getElementById('mensagemSucesso');
+                        msg.style.display = 'block';
+                        setTimeout(() => {
+                            msg.style.display = 'none';
+                        }, 3000);
+                    }
+                </script>

@@ -1,18 +1,240 @@
-# This .gitignore is appropriate for repositories deployed to GitHub Pages and using
-# a Gemfile as specified at https://github.com/github/pages-gem#conventional
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-# Basic Jekyll gitignores (synchronize to Jekyll.gitignore)
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negócios - Bem-vindo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #040c3d;
+            background-image: url('jovens-adultos-estudando-juntos-durante-a-sessao-de-estudo_23-2149265759.avif');
+        }
+        
+        header {
+            background-image: url('');
+            /* Substitua pela URL de uma imagem de negócios */
+            background-size: cover;
+            background-position: center;
+            background-color: #040c3d;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        
+        header p {
+            font-size: 1.5em;
+        }
+        
+        nav {
+            background-color: #040c3d;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+        
+        nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+        }
+        
+        .login-form,
+        .register-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        
+        .login-form h2,
+        .register-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .login-form input,
+        .register-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        
+        .login-form button,
+        .register-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        
+        .login-form button:hover,
+        .register-form button:hover {
+            background-color: #555;
+        }
+        
+        .success {
+            color: green;
+            text-align: center;
+        }
+        
+        .error {
+            color: red;
+            text-align: center;
+        }
+        
+        .link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .link a {
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
+</head>
 
-# Additional Ruby/bundler ignore for when you run: bundle install
-/vendor
+<body>
+    <nav>
+        <a href="file:///C:/Users/EDUARDONUNESDASILVA/Documents/projeto/sobre.html">Sobre</a>
+        <a href="#eventos">Eventos</a>
+        <a href="https://discord.com/channels/1370232178893389844/1370232178893389847">Contato</a>
+    </nav>
 
-# Specific ignore for GitHub Pages
-# GitHub Pages will always use its own deployed version of pages-gem 
-# This means GitHub Pages will NOT use your Gemfile.lock and therefore it is
-# counterproductive to check this file into the repository.
-# Details at https://github.com/github/pages-gem/issues/768
-Gemfile.lock
+    <header>
+        <h1>In Captibus</h1>
+        <p>Explore o mercado de trabalho, conheça-o e inspire-se!</p>
+
+    </header>
+    <!-- Formulário de Login -->
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form id="loginForm" onsubmit="return verificarLogin(event)">
+                <input type="text" id="username" placeholder="Nome de usuário" required>
+                <input type="password" id="password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <div id="mensagem" class="error">
+            </div>
+            <div class="link">
+                <p>Não tem uma conta? <a href="javascript:void(0);" onclick="mostrarFormularioCadastro()">Cadastre-se</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulário de Cadastro -->
+    <div class="login-container" id="registerContainer" style="display:none;">
+        <div class="register-form">
+            <h2>Cadastro</h2>
+            <form id="registerForm" onsubmit="return registrarUsuario(event)">
+                <input type="text" id="newUsername" placeholder="Nome de usuário" required>
+                <input type="password" id="newPassword" placeholder="Senha" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+            <div id="registerMessage" class="error"></div>
+            <div class="link">
+                <p>Já tem uma conta? <a href="javascript:void(0);" onclick="mostrarFormularioLogin()">Faça login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para verificar o login
+        function verificarLogin(event) {
+            event.preventDefault(); // Impede o envio do formulário para fazer a verificação via JavaScript
+        }
+        // Pega os valores dos campos de login
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var mensagem = document.getElementById('mensagem');
+
+        // Recupera as credenciais armazenadas no localStorage
+        var usuarioSalvo = localStorage.getItem(username);
+
+        // Verifica se o usuário e senha correspondem
+        if (usuarioSalvo && JSON.parse(usuarioSalvo).password === password) {
+            mensagem.className = 'success';
+            mensagem.textContent = "Login bem-sucedido!";
+            // Redirecionar ou abrir uma nova página aqui
+            window.location.href = 'dashboard.html'; // Exemplo de redirecionamento
+        } else {
+            mensagem.className = 'error';
+            mensagem.innerHTML = "<br>Nome de usuário ou senha incorretos!";
+        }
+
+
+        // Função para registrar um novo usuário
+        function registrarUsuario(event) {
+            event.preventDefault();
+
+            // Pega os valores dos campos de cadastro
+            var newUsername = document.getElementById('newUsername').value;
+            var newPassword = document.getElementById('newPassword').value;
+            var registerMessage = document.getElementById('registerMessage');
+
+            // Verifica se o nome de usuário já está registrado
+            if (localStorage.getItem(newUsername)) {
+                registerMessage.className = 'error';
+                registerMessage.textContent = "Nome de usuário já existe!";
+            } else {
+                // Salva as credenciais no localStorage
+                var usuario = {
+                    username: newUsername,
+                    password: newPassword
+                };
+                localStorage.setItem(newUsername, JSON.stringify(usuario));
+
+                registerMessage.className = 'success';
+                registerMessage.textContent = "Cadastro bem-sucedido! Agora você pode fazer login.";
+                setTimeout(mostrarFormularioLogin, 2000); // Redireciona após 2 segundos
+            }
+        }
+
+        // Função para mostrar o formulário de login
+        function mostrarFormularioLogin() {
+            document.getElementById('registerContainer').style.display = 'none';
+            document.querySelector('.login-container').style.display = 'flex';
+        }
+
+        // Função para mostrar o formulário de cadastro
+        function mostrarFormularioCadastro() {
+            document.querySelector('.login-container').style.display = 'none';
+            document.getElementById('registerContainer').style.display = 'flex';
+        }
+    </script>
+
+</body>
+
+</html>
+
+
